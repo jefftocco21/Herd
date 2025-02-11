@@ -12,6 +12,6 @@
         <a href="/contact">Contact</a>
     </nav>
 
-    <?php echo $slot ?>
+    {{ $slot }}
 </body>
 </html>
