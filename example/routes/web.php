@@ -6,7 +6,7 @@ use App\Models\Job;
 Route::get('/', function () {
 });
 
-//Index
+//index
 Route::get('/jobs', function (){
     $jobs= Job::with('employer')->latest()->paginate(5);
 
@@ -21,8 +21,8 @@ Route::get('jobs/create', function () {
 });
 
 //show
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
+Route::get('/jobs/{job}', function (Job $job) {
+    // $job = Job::find($id);
 
     return view('jobs.show', ['job' => $job ]);   
 });
@@ -44,21 +44,19 @@ Route::post('/jobs', function () {
 });
 
 //edit
-Route::get('/jobs/{id}/edit', function ($id) {
-    $job = Job::find($id);
+Route::get('/jobs/{job}/edit', function (Job $job) {
 
     return view('jobs.edit', ['job' => $job ]);   
 });
 
 //update
-Route::patch('/jobs/{id}', function ($id) {
+Route::patch('/jobs/{job}', function (Job $job) {
     request()->validate([
         'title' => ['required', 'min:3'],
         'salary' => ['required']
     ]);
     //authorize (not yet)
     //update job
-    $job = Job::findorFail($id);
     $job->update([
         'title' => request('title'),
         'salary' => request('salary'),
@@ -70,10 +68,10 @@ Route::patch('/jobs/{id}', function ($id) {
 });
 
 //destroy
-Route::delete('/jobs/{id}', function ($id) {
+Route::delete('/jobs/{job}', function (Job $job) {
     //authorize
     //delete job
-    $job = Job::findorFail($id)->delete();
+    $job->delete();
     //redirect
 
     return redirect('/jobs');
