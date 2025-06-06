@@ -13,6 +13,6 @@ class SessionController extends Controller
     
     public function store()
     {
-        dd(request()->all());
+        return view('auth.login');
     }
 }
