@@ -43,14 +43,12 @@ class JobController extends Controller
             'employer_id' => 1
         ]);
     
-        return redirect('jobs/');
+        return redirect('/jobs');
     }
 
     public function edit(Job $job)
     {
-        Gate::authorize('edit-job', $job);
-
-        return view('jobs.edit', ['job' => $job ]);  
+        return view('jobs.edit', ['job' => $job]);  
     }
 
     public function update(Job $job)
