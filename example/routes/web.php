@@ -10,7 +10,6 @@ use App\Http\Controllers\RegisteredUserController;
 
 Route::get('test', function() {
 
-    \Illuminate\support\facades\mail::to('jnt369@gmail.com')->send(new App\Mail\JobPosted);
 
     return ('Done');
 });
